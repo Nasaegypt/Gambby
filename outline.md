@@ -1,14 +1,15 @@
 service:
 
-    - category
     - title
     - location
     - service type
     - description
     - published at
     - availability
+    - category
     - cost
-    - service reviews 
+    - service reviews
+    - comments
     
     - request service
     - post service
