@@ -24,8 +24,15 @@ class Service(models.Model):  # table
     description = models.TextField(max_length=500)
     published_at = models.DateTimeField(auto_now=True)
     availability = models.CharField(max_length=10, choices=AVAILABILITY)
-    # category
     cost = models.CharField(max_length=10, choices=COST)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     def __str__(self):
-        return (self.title)
+        return self.title
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
