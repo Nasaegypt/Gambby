@@ -4,7 +4,8 @@ from django.db import models
 
 SERVICE_TYPE = (
     ('At Home', 'At Home'),
-    ('In Place', 'In Place')
+    ('In Place', 'In Place'),
+    ('Online', 'Online')
 )
 AVAILABILITY = (
     ('Active', 'Active'),
