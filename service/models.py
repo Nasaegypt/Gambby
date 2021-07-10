@@ -18,6 +18,11 @@ COST = (
 )
 
 
+def image_upload(instance, filename):
+    imagename, extention = filename.split(".")
+    return "services/%s.%s" % (instance.id, extention)
+
+
 class Service(models.Model):  # table
     title = models.CharField(max_length=100)  # column
     # location
@@ -27,6 +32,7 @@ class Service(models.Model):  # table
     availability = models.CharField(max_length=10, choices=AVAILABILITY)
     cost = models.CharField(max_length=10, choices=COST)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=image_upload)
 
     def __str__(self):
         return self.title
