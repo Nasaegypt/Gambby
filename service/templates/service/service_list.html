@@ -127,7 +127,7 @@
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
-                                            <img src="" alt=""> <!--/ {{ service.image.url }} in src"" -->
+                                            <img src="{{ service.image_thumbnail.url }}" alt=""> <!--/ {{ service.image.url }} in src"" -->
                                         </div>
                                         <div class="jobs_conetent">
                                             <a href="{% url 'services:service_detail' service.id %}"><h4>{{ service }}</h4></a>

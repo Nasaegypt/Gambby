@@ -1,4 +1,6 @@
 from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
@@ -33,6 +35,8 @@ class Service(models.Model):  # table
     cost = models.CharField(max_length=10, choices=COST)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload)
+    image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(50, 50)], format='JPEG',
+                                     options={'quality': 60})
 
     def __str__(self):
         return self.title
