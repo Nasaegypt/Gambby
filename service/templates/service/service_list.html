@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>{{ services.count }}+ Services Available</h3>
+                        <h3>{{ services.object_list.count }}+ Services Available</h3>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                                             <img src="{{ service.image_thumbnail.url }}" alt=""> <!--/ {{ service.image.url }} in src"" -->
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="{% url 'services:service_detail' service.id %}"><h4>{{ service }}</h4></a>
+                                            <a href="{% url 'services:service_detail' service.slug %}"><h4>{{ service }}</h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i> California, USA</p>
@@ -144,7 +144,7 @@
                                     <div class="jobs_right">
                                         <div class="apply_now">
                                             <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                            <a href="{% url 'services:service_detail' service.id %}" class="boxed-btn3">Apply Now</a>
+                                            <a href="{% url 'services:service_detail' service.slug %}" class="boxed-btn3">Apply Now</a>
                                         </div>
                                         <div class="date">
                                             <p>Published in: {{ service.published_at|date:'d M Y' }}</p>
@@ -154,18 +154,28 @@
                             </div>
                             {% endfor %}
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="pagination_wrap">
-                                    <ul>
-                                        <li><a href="#"> <i class="ti-angle-left"></i> </a></li>
-                                        <li><a href="#"><span>01</span></a></li>
-                                        <li><a href="#"><span>02</span></a></li>
-                                        <li><a href="#"> <i class="ti-angle-right"></i> </a></li>
-                                    </ul>
+                        {% if services.has_other_pages %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="pagination_wrap">
+                                        <ul>
+                                            {% if services.has_previous %}
+                                                 <li><a href="?page={{ services.previous_page_number }}"> <i class="ti-angle-left"></i> </a></li>
+                                            {% endif %}
+
+                                            {% for i in services.paginator.page_range %}
+                                                <li><a href="?page={{ i }}"><span>{{ i }}</span></a></li>
+                                            {% endfor %}
+
+                                            {% if services.has_next %}
+                                                <li><a href="?page={{ services.next_page_number }}"> <i class="ti-angle-right"></i> </a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
