@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from imagekit.models import ImageSpecField
@@ -27,6 +28,7 @@ def image_upload(instance, filename):
 
 
 class Service(models.Model):  # table
+    owner = models.ForeignKey(User, related_name='service_owner', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)  # column
     # location
     service_type = models.CharField(max_length=15, choices=SERVICE_TYPE)

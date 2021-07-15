@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'contact',
     'accounts',
     'imagekit',
+    'bootstrap4',
+
 
 ]
 

@@ -9,7 +9,10 @@ service:
     - category
     - cost
     - service reviews
-    - comments
+    - rating
+    - working hours
+    - service owner
+    
     
     - request service
     - post service
