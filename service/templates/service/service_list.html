@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3> {{ services|length }} + Services Available</h3>
+                        <h3> {{ service_count }} + Services Available</h3>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,12 @@
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
-                                            <img src="{{ service.image_thumbnail.url }}" alt="">
+                                            {% if service.image_thumbnail %}
+                                                <img src="{{ service.image_thumbnail.url }}" alt="">
+                                            {% else %}
+                                                <img src="" alt="">
+
+                                            {% endif %}
                                         </div>
                                         <div class="jobs_conetent">
                                             <a href="{% url 'services:service_detail' service.slug %}"><h4>{{ service }}</h4></a>

@@ -8,4 +8,6 @@ class ServiceForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['slug', 'owner']
 
-    pass
+    def __init__(self, *args, **kwargs):
+        super(ServiceForm, self).__init__(*args, **kwargs)
+        self.fields['image'].required = False

@@ -23,8 +23,13 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="{{ service.image_thumbnail.url }}" alt="">   <!-- {{ service.image.url}} in src"" -->
-                                </div>
+                                            {% if service.image_thumbnail %}
+                                                <img src="{{ service.image_thumbnail.url }}" alt="">
+                                            {% else %}
+                                                <img src="" alt="">
+
+                                            {% endif %}
+                                        </div>
                                 <div class="jobs_conetent">
                                     <a href="#"><h4>{{ service.title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">

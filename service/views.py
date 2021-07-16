@@ -8,10 +8,11 @@ from .forms import ServiceForm
 
 def service_list(request):
     service_list = Service.objects.all()
-    paginator = Paginator(service_list, 2)  # show 5 services per page
+    service_count = Service.objects.count()  # get number of services to show in html
+    paginator = Paginator(service_list, 5)  # show 5 services per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'services': page_obj}  # template name
+    context = {'services': page_obj, 'service_count': service_count}  # template name
     return render(request, 'service/service_list.html', context)
 
 
