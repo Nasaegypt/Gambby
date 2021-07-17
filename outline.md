@@ -2,14 +2,14 @@ service:
 
     - title
     - location
-    - service type
+    - service type (online, in place, at home)
     - description
     - published at
-    - availability
+    - availability (active, not active)
     - category
-    - cost
+    - cost (low - medium - high)
     - service reviews
-    - rating
+    - rating (5 stars rating system )
     - working hours
     - service owner
     
