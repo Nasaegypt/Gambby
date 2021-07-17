@@ -29,7 +29,8 @@ def add_service(request):
             myform = form.save(commit=False)
             myform.owner = request.user
             myform.save()
-            myform.save()  # repeated to enter the id with slug
+            form = ServiceForm()
+
         else:
             pass
 

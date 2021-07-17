@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +44,9 @@ INSTALLED_APPS = [
     'home',
     'blog',
     'contact',
-    'accounts',
     'imagekit',
     'bootstrap4',
+    'phonenumber_field',
 
 
 ]
