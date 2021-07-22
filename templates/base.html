@@ -45,7 +45,7 @@
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo">
                                     <a href="index.html">
-                                        <img src="img/logo.png" alt="">
+                                        <img src="/static/img/logo.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -53,12 +53,12 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">home</a></li>
-                                            <li><a href="/services">Browse Services</a></li>
+                                            <li><a href="/">home</a></li>
+                                            <li><a href="{% url 'services:service_list' %}">Browse Services</a></li>
                                             <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">Service details </a></li>
+                                                    <li><a href=" ">Service details </a></li>
                                                     <li><a href="elements.html">elements</a></li>
                                                 </ul>
                                             </li>
@@ -68,7 +68,7 @@
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -78,14 +78,14 @@
                                     <div class="phone_num d-1 d-xl-block">
                                         <ul>
                                         {% if user.is_authenticated %}
-                                            <li style="align-content: center ; color: #b3d7ff">User: {{ user.get_username }}  <a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                                            <li style="align-content: center ; color: #b3d7ff">User: <a href="{% url 'accounts:profile' %}">{{ user.get_username }}</a>  <a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                                            {% else %}
-                                             <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                                             <li><a href="{% url 'accounts:signup'%}?next={{request.path}}">New User<br> </a> <a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
                                         {% endif %}
                                         </ul>
                                     </div>
                                     <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" href="add">Post a Service</a>
+                                        <a class="boxed-btn3" href="{% url 'service:add_service' %}">Post a Service</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="/static/img/logo.png" alt="">
                                 </a>
                             </div>
                             <p>
@@ -210,8 +210,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- link that opens popup -->
     <!-- JS here -->
-    <script src="{% static '}js/vendor/modernizr-3.5.0.min.js' %}"></script>
-    <script src="{% static '}js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>

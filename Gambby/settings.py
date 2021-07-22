@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'imagekit',
     'bootstrap4',
     'phonenumber_field',
+    'django_filters',
 
 
 ]

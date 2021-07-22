@@ -1,18 +1,23 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Service
 from django.core.paginator import Paginator
 from .forms import ServiceForm
+from .filters import ServiceFilter
 
 
 # Create your views here.
 
 def service_list(request):
     service_list = Service.objects.all()
-    service_count = Service.objects.count()  # get number of services to show in html
-    paginator = Paginator(service_list, 5)  # show 5 services per page
+    #filters
+    myfilter = ServiceFilter(request.GET, queryset=service_list)
+    service_list = myfilter.qs
+    service_count = Service.objects.count()
+    paginator = Paginator(service_list.order_by('-id'), 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'services': page_obj, 'service_count': service_count}  # template name
+    context = {'services': page_obj, 'service_count': service_count, 'myfilter': myfilter}  # template name
     return render(request, 'service/service_list.html', context)
 
 
@@ -22,6 +27,7 @@ def service_detail(request, slug):
     return render(request, 'service/service_detail.html', context)
 
 
+@login_required
 def add_service(request):
     if request.method == 'POST':
         form = ServiceForm(request.POST, request.FILES)

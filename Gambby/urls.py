@@ -18,12 +18,15 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+import service.views
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
+    path('', service.views.service_list),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('admin/', admin.site.urls),
     path('services/', include('service.urls', namespace='services')),
+    path('contact-us/', include('contact.urls', namespace='contact')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
