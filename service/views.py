@@ -9,15 +9,18 @@ from .filters import ServiceFilter
 # Create your views here.
 
 def service_list(request):
-    service_list = Service.objects.all()
-    #filters
-    myfilter = ServiceFilter(request.GET, queryset=service_list)
+    # service_list = Service.objects.all()
+    # filters
+    myfilter = ServiceFilter(request.GET, queryset=Service.objects.all())
     service_list = myfilter.qs
-    service_count = Service.objects.count()
-    paginator = Paginator(service_list.order_by('-id'), 5)
+    service_count = service_list.count()
+    elements = 6  # services per page
+    paginator = Paginator(service_list.order_by('-id'), elements)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'services': page_obj, 'service_count': service_count, 'myfilter': myfilter}  # template name
+    elements = str(":-" + str(elements))
+    context = {'services': page_obj, 'service_count': service_count, 'myfilter': myfilter,
+               'elements': elements}  # template name
     return render(request, 'service/service_list.html', context)
 
 

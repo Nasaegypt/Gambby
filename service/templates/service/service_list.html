@@ -23,7 +23,7 @@
                 <div class="col-lg-3">
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
-                            <h3>Filter</h3>
+                            <h3>Search</h3>
                             <form method="get">
                                 {% bootstrap_form myfilter.form %}
                                 <input type="submit" value="Search" class="boxed-btn3 w-100 mt-2">
@@ -93,6 +93,25 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="pagination_wrap">
+                                    {% with request.get_full_path as querystring %}
+
+                                        {% if 'title' in querystring  %}
+                                        <ul>
+                                            {% if services.has_previous %}
+                                                 <li><a href="{{ querystring|slice:elements }}&page={{ services.previous_page_number }}"> <i class="ti-angle-left"></i> </a></li>
+                                            {% endif %}
+
+                                            {% for i in services.paginator.page_range %}
+                                                <li><a href="{{ querystring|slice:elements }}&page={{ i }}"><span>{{ i }}</span></a></li>
+                                            {% endfor %}
+
+                                            {% if services.has_next %}
+                                                <li><a href="{{ querystring|slice:elements }}&page={{ services.next_page_number }}"> <i class="ti-angle-right"></i> </a></li>
+                                            {% endif %}
+                                        </ul>
+
+                                        {% else %}
+
                                         <ul>
                                             {% if services.has_previous %}
                                                  <li><a href="?page={{ services.previous_page_number }}"> <i class="ti-angle-left"></i> </a></li>
@@ -106,6 +125,9 @@
                                                 <li><a href="?page={{ services.next_page_number }}"> <i class="ti-angle-right"></i> </a></li>
                                             {% endif %}
                                         </ul>
+                                        {% endif %}
+
+                                    {% endwith %}
                                     </div>
                                 </div>
                             </div>

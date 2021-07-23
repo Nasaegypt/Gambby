@@ -18,8 +18,8 @@
                         <h4>Edit Profile</h4>
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% bootstrap_form userform %}
-                            {% bootstrap_form profileform %}
+                            {% bootstrap_form userform layout='horizontal'%}
+                            {% bootstrap_form profileform layout='horizontal'%}
                             {% buttons %}
                                 
                                 <button class="boxed-btn3 w-100" type="submit">Save</button>
