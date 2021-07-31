@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from autoslug import AutoSlugField
+from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
@@ -40,8 +41,7 @@ class Service(models.Model):  # table
     image = models.ImageField(upload_to=image_upload, null=True, blank=True)
     image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(70, 70)], format='JPEG',
                                      options={'quality': 60})
-
-    slug = AutoSlugField(populate_from='title', unique=True, blank=True, null=True, allow_unicode=True, editable=True)
+    slug = AutoSlugField(populate_from='title', unique=True, allow_unicode=True, editable=True)
 
     def save(self, *args, **kwargs):
         super(Service, self).save(*args, **kwargs)
