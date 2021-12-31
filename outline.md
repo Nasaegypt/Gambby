@@ -16,6 +16,8 @@ service:
     
     - request service
     - post service
+    - edit service
+    - remove service
 
 Blog:
 
@@ -35,6 +37,7 @@ contact:
 home:
 
 users: accounts
+account control panel
 
 
 

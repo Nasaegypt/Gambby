@@ -18,32 +18,26 @@
   <section class="contact-section section_padding">
     <div class="container">
       <div class="d-none d-sm-block mb-5 pb-4">
-        <div id="map" style="height: 480px;"></div>
-        <script>
-          function initMap() {
-            var uluru = {lat: -25.363, lng: 131.044};
-            var grayStyles = [
-              {
-                featureType: "all",
-                stylers: [
-                  { saturation: -90 },
-                  { lightness: 50 }
-                ]
-              },
-              {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
-            ];
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 30.866, lng: 29.584},
-              zoom: 8,
-              styles: grayStyles,
-              scrollwheel:  false
-            });
-          }
-          
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
-        
-      </div>
+           <div class="job_lok_inner">
+                <div id="map" class="map" style="height: 400px; width: 100%"></div>
+                <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+                <script>
+                    var map = new ol.Map({
+                        target: 'map',
+                        layers: [
+                          new ol.layer.Tile({
+                            source: new ol.source.OSM()
+                          })
+                        ],
+                        view: new ol.View({
+                          center: ol.proj.fromLonLat([29.87, 31.17]),
+                          zoom: 11
+                        })
+                      });
+                </script>
+           </div>
+
+       </div>
 
 
       <div class="row">

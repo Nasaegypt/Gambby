@@ -30,15 +30,16 @@ ALLOWED_HOSTS = []
 
 # correct path for osgeo4w and gdal and proj
 import os
+
 if os.name == 'nt':
     import platform
+
     OSGEO4W = r"C:\OSGeo4W"
     assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
     os.environ['OSGEO4W_ROOT'] = OSGEO4W
     os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
-
 
 INSTALLED_APPS = [
     'accounts',
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_filters',
     'location',
+    'cities_light',
 
 ]
 
@@ -108,7 +110,7 @@ DATABASES = {
 
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
 
-        'NAME': 'gambby',
+        'NAME': 'Gambby',
 
         'USER': 'user001',
 
@@ -170,6 +172,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Gdal path & geos path & proj path
+# GDAL_LIBRARY_PATH = r'C:\OSGeo4W\share\gdal'
 # GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal302'
 # GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c'
 # PROJ_LIBRARY_PATH = r'C:\OSGeo4W\share\proj'
+
+# config cities light
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ar', 'en']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['EG']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR',
+                                   'PPLS', ]

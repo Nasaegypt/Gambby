@@ -24,11 +24,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="4a08b473-c970-4240-99dc-434b49943c51">
-        <schema name="public" object-types="table, view, sequence, function, constraint, index, column, dataset trigger" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="b66fdb83-f101-4f35-b679-f6f0226b2821">
@@ -44,6 +40,9 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b66fdb83-f101-4f35-b679-f6f0226b2821" />
     <connection id="4a08b473-c970-4240-99dc-434b49943c51" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="4a08b473-c970-4240-99dc-434b49943c51" dataset="public.cities_district_alt_names" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -163,7 +162,7 @@
       </connection>
       <connection id="4a08b473-c970-4240-99dc-434b49943c51" active="true">
         <database>
-          <name value="gambby" />
+          <name value="Gambby" />
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
@@ -174,7 +173,7 @@
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="5432" />
-          <database value="gambby" />
+          <database value="Gambby" />
           <type value="USER_PASSWORD" />
           <user value="user001" />
           <deprecated-pwd value="MTIzNDU2Nzg5" />

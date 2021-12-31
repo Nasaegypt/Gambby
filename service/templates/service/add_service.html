@@ -34,4 +34,40 @@
             </div>
         </div>
     </div>
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#id_service_region').select2();
+        $('#id_service_city').select2();
+    });
+</script>
+
+<!-- <script>
+
+    $(document).ready(function(){
+
+    $('[name="service_region"]').on('change', function(){
+    var regionID = $(this).val();
+    if (regionID) {
+        $.get(
+        "ajax.php",
+        {region: regionID},
+        function(data){
+        $('[name="service_city"]').html(data)
+        }
+    );
+    }else{
+        $('[name="service_city"]').html(test)
+
+    }
+
+    });
+
+    });
+
+</script> -->
 {% endblock body %}

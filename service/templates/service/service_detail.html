@@ -34,7 +34,7 @@
                                     <a href="#"><h4>{{ service.title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                            <p> <i class="fa fa-map-marker"></i>{{ service.service_city.name }}</p>
                                         </div>
                                         <div class="location">
                                             <p> <i class="fa fa-clock-o"></i> {{ service.service_type }}</p>
@@ -111,7 +111,7 @@
                                 <li>Published on: <span>{{ service.published_at|date:'d M Y'}}</span></li>
                                 <li>Availability: <span>{{ service.availability}}</span></li>
                                 <li>Cost: <span>{{ service.cost}} cost</span></li>
-                                <li>Location: <span>California, USA</span></li>
+                                <li>Location: <span>{{ service.service_city.name }}</span></li>
                                 <li>Service delivery: <span> {{ service.service_type }}</span></li>
                             </ul>
                         </div>
@@ -130,6 +130,8 @@
                             <div id="map" class="map" style="height: 300px; width: 100%"></div>
                             <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
                             <script>
+                                var lat = {{ service.service_city.latitude }}
+                                var lon = {{ service.service_city.longitude }}
                                 var map = new ol.Map({
                                     target: 'map',
                                     layers: [
@@ -138,8 +140,8 @@
                                       })
                                     ],
                                     view: new ol.View({
-                                      center: ol.proj.fromLonLat([31.2, 30.2]),
-                                      zoom: 9
+                                      center: ol.proj.fromLonLat([lon, lat]),
+                                      zoom: 13
                                     })
                                   });
                             </script>

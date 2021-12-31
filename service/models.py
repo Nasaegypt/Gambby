@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from autoslug import AutoSlugField
-from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
-
+from cities_light.models import City, Country, Region
 # Create your models here.
 
 SERVICE_TYPE = (
@@ -22,7 +21,6 @@ COST = (
     ('High', 'High')
 )
 
-
 def image_upload(instance, filename):
     imagename, extention = filename.split(".")
     return "services/%s.%s" % (instance.id, extention)
@@ -32,6 +30,9 @@ class Service(models.Model):  # table
     owner = models.ForeignKey(User, related_name='service_owner', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)  # column
     # location
+    service_country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    service_region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    service_city = models.ForeignKey(City, on_delete=models.CASCADE)
     service_type = models.CharField(max_length=15, choices=SERVICE_TYPE)
     description = models.TextField(max_length=500)
     published_at = models.DateTimeField(auto_now=True)
