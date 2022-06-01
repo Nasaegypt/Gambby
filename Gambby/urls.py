@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('services/', include('service.urls', namespace='services')),
     path('contact-us/', include('contact.urls', namespace='contact')),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

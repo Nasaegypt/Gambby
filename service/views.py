@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Service
 from django.core.paginator import Paginator
 from .forms import ServiceForm
 from .filters import ServiceFilter
+from cities_light.models import City, Country, Region
 
 
 # Create your views here.
@@ -30,6 +31,14 @@ def service_detail(request, slug):
     return render(request, 'service/service_detail.html', context)
 
 
+# AJAX
+def load_cities(request):
+    region_id = request.GET.get('region_id')
+    cities = City.objects.filter(region_id=region_id).all()
+    return render(request, 'service/city_dropdown_list_options.html', {'cities': cities})
+
+
+
 @login_required
 def add_service(request):
     if request.method == 'POST':
@@ -39,6 +48,7 @@ def add_service(request):
             myform.owner = request.user
             myform.save()
             form = ServiceForm()
+            return redirect('services:service_list')
 
         else:
             pass
@@ -47,3 +57,4 @@ def add_service(request):
         form = ServiceForm()
 
     return render(request, 'service/add_service.html', {'form': form})
+
