@@ -10,7 +10,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # city = models.ForeignKey('City', related_name='user_city', on_delete=models.CASCADE, null=True, blank=True)
     phone_number = PhoneNumberField(blank=True)
     image = models.ImageField(upload_to="profile/")
 
@@ -26,8 +25,3 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
-# class City(models.Model):
-#     name = models.CharField(max_length=30)
-#
-#     def __str__(self):
-#         return self.name

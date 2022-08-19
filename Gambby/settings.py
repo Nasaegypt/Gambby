@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-+_@51g=$y!ok!z(+4d!%s)tor1+w@b&s_+0^+c*@h+xb@d#@%k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "10.0.2.2", "localhost", '127.0.0.1'
+]
 
 # Application definition
 
@@ -54,14 +56,11 @@ INSTALLED_APPS = [
 
     # my Apps
     'service',
-    'home',
-    'blog',
     'contact',
     'imagekit',
     'bootstrap4',
     'phonenumber_field',
     'django_filters',
-    'location',
     'rest_framework',
     'api',
     "corsheaders",
@@ -88,8 +87,7 @@ ROOT_URLCONF = 'Gambby.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,10 +107,6 @@ WSGI_APPLICATION = 'Gambby.wsgi.application'
 
 
 DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 
     'default': {
 
@@ -188,7 +182,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # config cors headers permissions
 CORS_ALLOW_ALL_ORIGINS = True
-
-ALLOWED_HOSTS = [
-    "10.0.2.2", "localhost", '127.0.0.1'
-]
