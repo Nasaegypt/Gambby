@@ -12,7 +12,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cities_light', '0011_auto_20211129_1734'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from service.models import Service, Category, SubCategory
-from cities_light.models import City, Region
+#from cities_light.models import City, Region
 from django.contrib.auth.models import User
 
 
@@ -16,16 +16,16 @@ class CategorySerializer(ModelSerializer):
         fields = ['name']
 
 
-class CitySerializer(ModelSerializer):
-    class Meta:
-        model = City
-        fields = ['name', "latitude", "longitude"]
-
-
-class RegionSerializer(ModelSerializer):
-    class Meta:
-        model = Region
-        fields = ['name']
+# class CitySerializer(ModelSerializer):
+#     class Meta:
+#         model = City
+#         fields = ['name', "latitude", "longitude"]
+#
+#
+# class RegionSerializer(ModelSerializer):
+#     class Meta:
+#         model = Region
+#         fields = ['name']
 
 
 class OwnerSerializer(ModelSerializer):
@@ -37,8 +37,8 @@ class OwnerSerializer(ModelSerializer):
 class ServiceSerializer(ModelSerializer):
     category = CategorySerializer()
     sub_category = SubCategorySerializer()
-    service_city = CitySerializer()
-    service_region = RegionSerializer()
+    #service_city = CitySerializer()
+    #service_region = RegionSerializer()
     owner = OwnerSerializer()
     image = SerializerMethodField()
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 # correct path for osgeo4w and gdal and proj
-import os
+
 
 if os.name == 'nt':
     import platform
@@ -61,7 +62,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_filters',
     'location',
-    'cities_light',
     'rest_framework',
     'api',
     "corsheaders",
@@ -73,7 +73,6 @@ MIDDLEWARE = [
 
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
-
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -186,11 +185,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c'
 # PROJ_LIBRARY_PATH = r'C:\OSGeo4W\share\proj'
 
-# config cities light
-CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ar', 'en']
-CITIES_LIGHT_INCLUDE_COUNTRIES = ['EG']
-CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR',
-                                   'PPLS', ]
 
 # config cors headers permissions
 CORS_ALLOW_ALL_ORIGINS = True

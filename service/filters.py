@@ -9,4 +9,4 @@ class ServiceFilter(django_filters.FilterSet):
     class Meta:
         model = Service
         fields = '__all__'
-        exclude = ['owner', 'published_at', 'image', 'image_thumbnail', 'slug', 'service_city']
+        exclude = ['owner', 'published_at', 'image', 'image_thumbnail', 'slug']

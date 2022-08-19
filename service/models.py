@@ -3,7 +3,6 @@ from django.db import models
 from autoslug import AutoSlugField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
-from cities_light.models import City, Country, Region
 
 # Create your models here.
 
@@ -30,13 +29,9 @@ def image_upload(instance, filename):
 class Service(models.Model):  # table
     owner = models.ForeignKey(User, related_name='service_owner', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)  # column
-    # location
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     sub_category = models.ForeignKey('SubCategory', on_delete=models.CASCADE, null=True)
     description = models.TextField(max_length=500)
-    service_country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    service_region = models.ForeignKey(Region, on_delete=models.CASCADE)
-    service_city = models.ForeignKey(City, on_delete=models.CASCADE)
     service_type = models.CharField(max_length=15, choices=SERVICE_TYPE)
     cost = models.CharField(max_length=10, choices=COST)
     availability = models.CharField(max_length=10, choices=AVAILABILITY)
