@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django_heroku
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +26,7 @@ SECRET_KEY = 'django-insecure-+_@51g=$y!ok!z(+4d!%s)tor1+w@b&s_+0^+c*@h+xb@d#@%k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gambby.herokuapp.com']
 
 # Application definition
 
@@ -119,13 +121,13 @@ DATABASES = {
 
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
 
-        'NAME': 'Gambby',
+        'NAME': 'd19bc460dev19p',
 
-        'USER': 'user001',
+        'USER': 'xyldyuqgavpvur',
 
-        'PASSWORD': '123456789',
+        'PASSWORD': '37f60b8502372cc9f8bd847989ae4c6af6b78bccd62393b655bafb5515a8e278',
 
-        'HOST': 'localhost',
+        'HOST': 'ec2-54-86-224-85.compute-1.amazonaws.com',
 
         'PORT': '5432',
 
@@ -167,7 +169,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+#STATIC_URL = '/static/'
+#configuration for heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/'
@@ -195,6 +202,6 @@ CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PP
 # config cors headers permissions
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = [
-    "10.0.2.2", "localhost", '127.0.0.1'
-]
+# ALLOWED_HOSTS = [
+#     "10.0.2.2", "localhost", '127.0.0.1'
+# ]
