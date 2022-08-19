@@ -4,12 +4,12 @@ from autoslug import AutoSlugField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from cities_light.models import City, Country, Region
+
 # Create your models here.
 
 SERVICE_TYPE = (
     ('At Home', 'At Home'),
     ('In Place', 'In Place'),
-    ('Online', 'Online')
 )
 AVAILABILITY = (
     ('Active', 'Active'),
@@ -21,6 +21,7 @@ COST = (
     ('High', 'High')
 )
 
+
 def image_upload(instance, filename):
     imagename, extention = filename.split(".")
     return "services/%s.%s" % (instance.id, extention)
@@ -30,16 +31,17 @@ class Service(models.Model):  # table
     owner = models.ForeignKey(User, related_name='service_owner', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)  # column
     # location
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    sub_category = models.ForeignKey('SubCategory', on_delete=models.CASCADE, null=True)
+    description = models.TextField(max_length=500)
     service_country = models.ForeignKey(Country, on_delete=models.CASCADE)
     service_region = models.ForeignKey(Region, on_delete=models.CASCADE)
     service_city = models.ForeignKey(City, on_delete=models.CASCADE)
     service_type = models.CharField(max_length=15, choices=SERVICE_TYPE)
-    description = models.TextField(max_length=500)
-    published_at = models.DateTimeField(auto_now=True)
-    availability = models.CharField(max_length=10, choices=AVAILABILITY)
     cost = models.CharField(max_length=10, choices=COST)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=image_upload, null=True, blank=True)
+    availability = models.CharField(max_length=10, choices=AVAILABILITY)
+    image = models.ImageField(upload_to=image_upload, null=True, blank=True, default='services/logo2.png')
+    published_at = models.DateTimeField(auto_now=True)
     image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(70, 70)], format='JPEG',
                                      options={'quality': 60})
     slug = AutoSlugField(populate_from='title', unique=True, allow_unicode=True, editable=True)
@@ -53,6 +55,14 @@ class Service(models.Model):  # table
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
+
+
+class SubCategory(models.Model):
+    name = models.CharField(max_length=30)
+    main_category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

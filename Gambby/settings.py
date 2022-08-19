@@ -62,17 +62,26 @@ INSTALLED_APPS = [
     'django_filters',
     'location',
     'cities_light',
+    'rest_framework',
+    'api',
+    "corsheaders",
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Gambby.urls'
@@ -182,3 +191,10 @@ CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ar', 'en']
 CITIES_LIGHT_INCLUDE_COUNTRIES = ['EG']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR',
                                    'PPLS', ]
+
+# config cors headers permissions
+CORS_ALLOW_ALL_ORIGINS = True
+
+ALLOWED_HOSTS = [
+    "10.0.2.2", "localhost", '127.0.0.1'
+]

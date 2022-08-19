@@ -25,8 +25,10 @@ urlpatterns = [
     path('', service.views.service_list),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls', namespace='api')),
     path('services/', include('service.urls', namespace='services')),
     path('contact-us/', include('contact.urls', namespace='contact')),
+
 
 ]
 

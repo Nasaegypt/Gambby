@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Service
+from .models import Service, SubCategory
 from django.core.paginator import Paginator
 from .forms import ServiceForm
 from .filters import ServiceFilter
@@ -38,6 +38,13 @@ def load_cities(request):
     return render(request, 'service/city_dropdown_list_options.html', {'cities': cities})
 
 
+def load_sub_category(request):
+    main_category_id = request.GET.get('main_category_id')
+    sub_categories = SubCategory.objects.filter(main_category_id=main_category_id).all()
+    #print(sub_categories)
+    return render(request, 'service/sub_category_list_options.html', {'sub_categories': sub_categories})
+
+
 
 @login_required
 def add_service(request):
@@ -57,4 +64,3 @@ def add_service(request):
         form = ServiceForm()
 
     return render(request, 'service/add_service.html', {'form': form})
-
