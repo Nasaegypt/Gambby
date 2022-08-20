@@ -173,12 +173,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Gdal path & geos path & proj path
-# GDAL_LIBRARY_PATH = r'C:\OSGeo4W\share\gdal'
-# GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal302'
-# GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c'
-# PROJ_LIBRARY_PATH = r'C:\OSGeo4W\share\proj'
-
-
 # config cors headers permissions
 CORS_ALLOW_ALL_ORIGINS = True
